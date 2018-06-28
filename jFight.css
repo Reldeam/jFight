@@ -15,10 +15,43 @@ html, body {
 
 #jFight .spaceship {
     position: absolute;
-    width: 20px;
-    height: 20px;
     top: 0;
     left: 0;
+
+    --view-distance: 200px;
+    --spaceship-size: 20px;
+    --colour: #FFFFFF;
+}
+
+#jFight .spaceship::before {
+    content: "";
+    position: absolute;
+    width: calc(var(--spaceship-size));
+    height: calc(var(--spaceship-size));
+    left: calc(-0.5*var(--spaceship-size));
+    top: calc(-0.5*var(--spaceship-size));
+
+    border: solid thin var(--colour);
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+#jFight .spaceship::after {
+    content: "";
+    position: absolute;
+    width: calc(2*var(--view-distance));
+    height: calc(2*var(--view-distance));
+    left: calc(-1*var(--view-distance));
+    top: calc(-1*var(--view-distance));
+
+    border: solid thin var(--colour);
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+#jFight .spaceship .sprite {
+    position: absolute;
+
     background-color: #FFF;
     background-image: url("assets/spaceship.svg");
     background-size: cover;
@@ -27,7 +60,6 @@ html, body {
     -webkit-mask-image: url("assets/spaceship.svg");
     mask-size: 100% 100%;
     -webkit-mask-size: cover;
-
 }
 
 #jFight .spaceship.fade {

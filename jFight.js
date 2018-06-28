@@ -11,7 +11,7 @@ const jFight = function()
     const BULLET_SPEED = 800;
     const START_AMMO = 3;
     const START_HEALTH = 5;
-    const VIEW_DISTANCE = 100;
+    const VIEW_DISTANCE = 200;
     const SPACESHIP_SIZE = 20;
     const BULLET_WIDTH = 2;
     const BULLET_LENGTH = 8;
@@ -143,6 +143,7 @@ const jFight = function()
     function Spaceship(team, colour)
     {
         var entity;
+        var sprite;
 
         var position = new Position(0, 0);
         var speed = 0;
@@ -284,9 +285,18 @@ const jFight = function()
 
             entity = document.createElement("div");
             entity.className = "spaceship";
-            entity.style.width = SPACESHIP_SIZE + "px";
-            entity.style.height = SPACESHIP_SIZE + "px";
-            entity.style.backgroundColor = colour;
+
+
+
+            sprite = document.createElement("div");
+            sprite.className = "sprite";
+            sprite.style.width = SPACESHIP_SIZE + "px";
+            sprite.style.height = SPACESHIP_SIZE + "px";
+            sprite.style.backgroundColor = colour;
+            sprite.style.top = -(SPACESHIP_SIZE / 2) + "px";
+            sprite.style.left = -(SPACESHIP_SIZE / 2) + "px";
+
+            entity.appendChild(sprite);
 
             world.entity.appendChild(entity);
 
@@ -304,20 +314,28 @@ const jFight = function()
             var xDis = xSpeed + xChange;
             var yDis = ySpeed + yChange;
 
-            var timeToCollision = 1;
+            var timeToCollision = (timeMultiplier / FPS);
+            var distanceToCollision = SPACESHIP_SIZE;
             var target = null;
-            var fleet, ship, t;
+            var fleet, ship, t, d;
 
             for(var u in fleets) {
                 fleet = fleets[u];
                 for(var v in fleet.spaceships) {
                     ship = fleet.spaceships[v];
                     if(ship == spaceship) continue;
-                    t = spaceship.timeToCollision(ship);
-                    if(!t) continue;
-                    if(t > 0 && t < timeToCollision) {
-                        timeToCollision = t;
+                    d = spaceship.distanceTo(ship);
+                    if(d < distanceToCollision) {
+                        distanceToCollision = d;
                         target = ship;
+                    }
+                    else {
+                        t = spaceship.timeToCollision(ship);
+                        if(!t) continue;
+                        if(t > 0 && t < timeToCollision) {
+                            timeToCollision = t;
+                            target = ship;
+                        }
                     }
                 }
             }
@@ -341,8 +359,8 @@ const jFight = function()
                     speed = Math.sqrt(Math.pow(xDis * (FPS / timeMultiplier), 2) + Math.pow(yDis * (FPS / timeMultiplier), 2));
                     direction = Math.atan2(yDis, xDis);
 
-                    entity.style.left = position.x() - SPACESHIP_SIZE / 2 + "px";
-                    entity.style.top = position.y() - SPACESHIP_SIZE / 2 + "px";
+                    entity.style.left = position.x() + "px";
+                    entity.style.top = position.y() + "px";
                     entity.style.transform = "rotate(" + (facing * 180 / Math.PI + 90) + "deg)";
                     //spaceship.addTrail();
                 }
@@ -375,22 +393,24 @@ const jFight = function()
             var dx = xSpeed + xChange;
             var dy = ySpeed + yChange;
 
-            var m1 = dx == 0 ? null : dy / dx;
-            var b1 = m1 == null ? null : position.y() - m1 * position.x();
+            var m1 = (dx == 0) ? null : dy / dx;
+            var b1 = (m1 == null) ? null : position.y() - (m1 * position.x());
 
-            var m2 = m1 == null ? 0 : -1 / m1;
-            var b2 = m1 == null ? target.public.y() : target.public.y() - m2 * target.public.x();
+            var m2 = (m1 == null) ? 0 : -1 / m1;
+            var b2 = (m1 == null) ? target.public.y() : target.public.y() - (m2 * target.public.x());
 
-            var x = m1 == null ? position.x() : (b2 - b1) / (m1 - m2);
-            var y = m1 == null ? target.public.y() : (m2 * b1 - m1 * b2) / (m2 - m1);
+            var x = (m1 == null) ? position.x() : (b2 - b1) / (m1 - m2);
+            var y = (m1 == null) ? target.public.y() : (m2 * b1 - m1 * b2) / (m2 - m1);
+
+            if(m1 == null) console.log("yolo");
 
             var xDis = x - target.public.x();
             var yDis = y - target.public.y();
             var dis = Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2));
 
-            if(dis >= SPACESHIP_SIZE) return null;
+            if(dis > SPACESHIP_SIZE) return null;
 
-            return (x - position.x()) / (speed * Math.cos(direction) * (timeMultiplier / FPS));
+            return (timeMultiplier/FPS) * ((x - position.x()) / dx);
         };
 
         this.damage = function(amount)
@@ -447,9 +467,10 @@ const jFight = function()
             var xDis = (this.speed * Math.cos(this.direction)) * (timeMultiplier / FPS);
             var yDis = (this.speed * Math.sin(this.direction)) * (timeMultiplier / FPS);
 
-            var u, v, t, fleet, ship;
+            var u, v, t, d, fleet, ship;
 
-            var timeToCollision = 1;
+            var timeToCollision = timeMultiplier / FPS;
+            var distanceToCollision = SPACESHIP_SIZE;
             var target = null;
 
             for(u in fleets) {
@@ -457,11 +478,18 @@ const jFight = function()
                 for(v in fleet.spaceships) {
                     ship = fleet.spaceships[v];
                     if(ship == this.owner) continue;
-                    t = this.getCollisionTime(ship);
-                    if(!t) continue;
-                    if(t > 0 && t < timeToCollision) {
-                        timeToCollision = t;
+                    d = this.distanceTo(ship);
+                    if(d < distanceToCollision) {
+                        distanceToCollision = d;
                         target = ship;
+                    }
+                    else {
+                        t = this.getCollisionTime(ship);
+                        if(!t) continue;
+                        if(t > 0 && t < timeToCollision) {
+                            timeToCollision = t;
+                            target = ship;
+                        }
                     }
                 }
             }
@@ -505,7 +533,15 @@ const jFight = function()
 
             if(dis >= SPACESHIP_SIZE / 2) return null;
 
-            return (x - this.position.x()) / (this.speed * Math.cos(this.direction) * (timeMultiplier / FPS));
+            return ((x - this.position.x()) / dx) * (timeMultiplier / FPS);
+        };
+
+        this.distanceTo = function(ship)
+        {
+            var xDis = ship.public.x() - this.position.x();
+            var yDis = ship.public.y() - this.position.y();
+
+            return Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2));
         }
     }
 
