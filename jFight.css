@@ -1,0 +1,88 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#jFight {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+
+#jFight .spaceship {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color: #FFF;
+    background-image: url("assets/spaceship.svg");
+    background-size: cover;
+    background-blend-mode: multiply;
+    mask-image: url("assets/spaceship.svg");
+    -webkit-mask-image: url("assets/spaceship.svg");
+    mask-size: 100% 100%;
+    -webkit-mask-size: cover;
+
+}
+
+#jFight .spaceship.fade {
+    animation: fade 0.5s linear forwards;
+}
+
+#jFight .particle-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    --fly-rotation: 0deg;
+    --fly-x: 100px;
+    --fly-y: 100px;
+    animation: fly 1s linear forwards;
+}
+
+#jFight .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    top: 0;
+    right: 0;
+    background-color: white;
+
+    --fly-rotation: 0deg;
+    --fly-x: 100px;
+    --fly-y: 100px;
+    animation: fly 1s linear forwards;
+}
+
+@keyframes fly {
+    0%   {
+        transform:  translateX(0px)  translateY(0px) rotate(var(--fly-rotation));
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(var(--fly-x)) translateY(var(--fly-y)) rotate(var(--fly-rotation));
+        opacity: 0;
+    }
+}
+
+@keyframes fade {
+    0%   {opacity: 0.3;}
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+#jFight .bullet {
+    width: 2px;
+    height: 5px;
+    background-color: white;
+    position: absolute;
+}
