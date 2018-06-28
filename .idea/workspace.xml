@@ -54,31 +54,24 @@
       <file leaf-file-name="jFight.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jFight.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+            <state relative-caret-position="125">
+              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
               <folding>
                 <element signature="e#471#764#0" expanded="false" />
-                <element signature="e#906#2683#0" expanded="false" />
-                <element signature="e#2724#2966#0" expanded="false" />
-                <element signature="e#2992#3249#0" expanded="false" />
-                <element signature="e#3295#3975#0" expanded="false" />
-                <element signature="e#4018#13259#0" expanded="false" />
-                <element signature="e#4420#4458#0" expanded="false" />
-                <element signature="e#4539#7321#0" expanded="false" />
-                <element signature="e#5092#5403#0" expanded="false" />
-                <element signature="e#5460#5790#0" expanded="false" />
-                <element signature="e#5835#6390#0" expanded="false" />
-                <element signature="e#6444#6948#0" expanded="false" />
-                <element signature="e#7002#7311#0" expanded="false" />
-                <element signature="e#7360#8769#0" expanded="false" />
-                <element signature="e#10850#11485#0" expanded="false" />
-                <element signature="e#11544#12577#0" expanded="false" />
-                <element signature="e#12627#12720#0" expanded="false" />
-                <element signature="e#12768#12867#0" expanded="false" />
-                <element signature="e#12921#13010#0" expanded="false" />
-                <element signature="e#13320#16498#0" expanded="false" />
-                <element signature="e#16532#16725#0" expanded="false" />
-                <element signature="e#16738#17472#0" expanded="false" />
+                <element signature="e#2836#3078#0" expanded="false" />
+                <element signature="e#3104#3361#0" expanded="false" />
+                <element signature="e#3407#4087#0" expanded="false" />
+                <element signature="e#4532#4570#0" expanded="false" />
+                <element signature="e#4652#7425#0" expanded="false" />
+                <element signature="e#5205#5516#0" expanded="false" />
+                <element signature="e#6548#7052#0" expanded="false" />
+                <element signature="e#7106#7415#0" expanded="false" />
+                <element signature="e#11073#11708#0" expanded="false" />
+                <element signature="e#12983#13076#0" expanded="false" />
+                <element signature="e#13124#13223#0" expanded="false" />
+                <element signature="e#13277#13366#0" expanded="false" />
+                <element signature="e#17021#17214#0" expanded="false" />
+                <marker date="1530165186781" expanded="false" signature="17227:17961" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -119,7 +112,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3750">
               <caret line="153" column="18" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
-              <folding />
+              <folding>
+                <marker date="1530155824205" expanded="true" signature="893:5092" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,8 +139,8 @@
         <option value="$PROJECT_DIR$/players/Daniel.js" />
         <option value="$PROJECT_DIR$/players/Lawrence.js" />
         <option value="$PROJECT_DIR$/fleet.js" />
-        <option value="$PROJECT_DIR$/jFight.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/jFight.js" />
       </list>
     </option>
   </component>
@@ -154,6 +149,9 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -308,6 +306,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="bd971dc7-d125-4e8f-ab3c-80c45bf3ac63" name="Default" comment="" />
@@ -315,12 +316,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1530078342556</updated>
-      <workItem from="1530078343813" duration="37047000" />
+      <workItem from="1530078343813" duration="40435000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37047000" />
+    <option name="totallyTimeSpent" value="40435000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -377,31 +378,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/jFight.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/spaceship.svg">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -434,37 +419,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3750">
           <caret line="153" column="18" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
+          <folding>
+            <marker date="1530155824205" expanded="true" signature="893:5092" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jFight.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jFight.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        <state relative-caret-position="125">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
           <folding>
             <element signature="e#471#764#0" expanded="false" />
-            <element signature="e#906#2683#0" expanded="false" />
-            <element signature="e#2724#2966#0" expanded="false" />
-            <element signature="e#2992#3249#0" expanded="false" />
-            <element signature="e#3295#3975#0" expanded="false" />
-            <element signature="e#4018#13259#0" expanded="false" />
-            <element signature="e#4420#4458#0" expanded="false" />
-            <element signature="e#4539#7321#0" expanded="false" />
-            <element signature="e#5092#5403#0" expanded="false" />
-            <element signature="e#5460#5790#0" expanded="false" />
-            <element signature="e#5835#6390#0" expanded="false" />
-            <element signature="e#6444#6948#0" expanded="false" />
-            <element signature="e#7002#7311#0" expanded="false" />
-            <element signature="e#7360#8769#0" expanded="false" />
-            <element signature="e#10850#11485#0" expanded="false" />
-            <element signature="e#11544#12577#0" expanded="false" />
-            <element signature="e#12627#12720#0" expanded="false" />
-            <element signature="e#12768#12867#0" expanded="false" />
-            <element signature="e#12921#13010#0" expanded="false" />
-            <element signature="e#13320#16498#0" expanded="false" />
-            <element signature="e#16532#16725#0" expanded="false" />
-            <element signature="e#16738#17472#0" expanded="false" />
+            <element signature="e#2836#3078#0" expanded="false" />
+            <element signature="e#3104#3361#0" expanded="false" />
+            <element signature="e#3407#4087#0" expanded="false" />
+            <element signature="e#4532#4570#0" expanded="false" />
+            <element signature="e#4652#7425#0" expanded="false" />
+            <element signature="e#5205#5516#0" expanded="false" />
+            <element signature="e#6548#7052#0" expanded="false" />
+            <element signature="e#7106#7415#0" expanded="false" />
+            <element signature="e#11073#11708#0" expanded="false" />
+            <element signature="e#12983#13076#0" expanded="false" />
+            <element signature="e#13124#13223#0" expanded="false" />
+            <element signature="e#13277#13366#0" expanded="false" />
+            <element signature="e#17021#17214#0" expanded="false" />
+            <marker date="1530165186781" expanded="false" signature="17227:17961" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -3,12 +3,12 @@ const jFight = function()
     const FPS = 20;
     const FLEET_SIZE = 5;
     const MAX_TURN_RATE = 0.2;
-    const MAX_ACCELERATION = 0.1;
+    const MAX_ACCELERATION = 10;
     const MAX_HEALTH = 3;
     const MAX_AMMO = 100;
     const MAX_FIRE_RATE = 2;
     const BULLET_DAMAGE = 10;
-    const BULLET_SPEED = 10;
+    const BULLET_SPEED = 800;
     const START_AMMO = 3;
     const START_HEALTH = 5;
     const VIEW_DISTANCE = 100;
@@ -31,6 +31,7 @@ const jFight = function()
     };
 
     var currentTime = 0;
+    var timeMultiplier = 1;
     var fleets = [];
     var bullets = [];
     var started = false;
@@ -57,6 +58,8 @@ const jFight = function()
         angle = 0;
         xSpeed = 20 * spaceship.public.speed() * Math.cos(spaceship.public.direction());
         ySpeed = 20 * spaceship.public.speed() * Math.sin(spaceship.public.direction());
+        xSpeed *= (timeMultiplier / FPS);
+        ySpeed *= (timeMultiplier / FPS);
         wrapper.style.setProperty("--fly-rotation", angle + "deg");
         wrapper.style.setProperty("--fly-x", xSpeed + "px");
         wrapper.style.setProperty("--fly-y", ySpeed + "px");
@@ -161,7 +164,7 @@ const jFight = function()
             return entity;
         };
 
-        this.getColour = function() { return colour; }
+        this.getColour = function() { return colour; };
 
         this.public = {
             team : function() { return team; },
@@ -203,7 +206,7 @@ const jFight = function()
 
             fire : function()
             {
-                if((currentTime - lastFired) < 1000 / (FPS * MAX_FIRE_RATE)) return false;
+                if((currentTime - lastFired) < FPS / MAX_FIRE_RATE) return false;
                 if(ammo <= 0) return false;
                 lastFired = currentTime;
                 ammo--;
@@ -256,7 +259,6 @@ const jFight = function()
                 collision = false;
                 position.setX(Math.random() * world.width());
                 position.setY(Math.random() * world.height());
-                console.log(position);
                 for (var u in fleets) {
                     var fleet = fleets[u];
                     for (var v in fleet.spaceships) {
@@ -293,11 +295,11 @@ const jFight = function()
 
         this.update = function()
         {
-            var xSpeed = speed * Math.cos(direction);
-            var ySpeed = speed * Math.sin(direction);
+            var xSpeed = (speed * Math.cos(direction)) * (timeMultiplier / FPS);
+            var ySpeed = (speed * Math.sin(direction)) * (timeMultiplier / FPS);
 
-            var xChange = acceleration * Math.cos(facing);
-            var yChange = acceleration * Math.sin(facing);
+            var xChange = (acceleration * Math.cos(facing)) * (timeMultiplier / FPS);
+            var yChange = (acceleration * Math.sin(facing)) * (timeMultiplier / FPS);
 
             var xDis = xSpeed + xChange;
             var yDis = ySpeed + yChange;
@@ -336,7 +338,7 @@ const jFight = function()
                     destroySpaceship(spaceship);
                 }
                 else {
-                    speed = Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2));
+                    speed = Math.sqrt(Math.pow(xDis * (FPS / timeMultiplier), 2) + Math.pow(yDis * (FPS / timeMultiplier), 2));
                     direction = Math.atan2(yDis, xDis);
 
                     entity.style.left = position.x() - SPACESHIP_SIZE / 2 + "px";
@@ -364,11 +366,11 @@ const jFight = function()
 
         this.timeToCollision = function(target)
         {
-            var xSpeed = speed * Math.cos(direction);
-            var ySpeed = speed * Math.sin(direction);
+            var xSpeed = (speed * Math.cos(direction)) * (timeMultiplier / FPS);
+            var ySpeed = (speed * Math.sin(direction)) * (timeMultiplier / FPS);
 
-            var xChange = acceleration * Math.cos(facing);
-            var yChange = acceleration * Math.sin(facing);
+            var xChange = (acceleration * Math.cos(facing)) * (timeMultiplier / FPS);
+            var yChange = (acceleration * Math.sin(facing)) * (timeMultiplier / FPS);
 
             var dx = xSpeed + xChange;
             var dy = ySpeed + yChange;
@@ -388,7 +390,7 @@ const jFight = function()
 
             if(dis >= SPACESHIP_SIZE) return null;
 
-            return (x - position.x()) / (speed * Math.cos(direction));
+            return (x - position.x()) / (speed * Math.cos(direction) * (timeMultiplier / FPS));
         };
 
         this.damage = function(amount)
@@ -442,8 +444,8 @@ const jFight = function()
 
         this.update = function()
         {
-            var xDis = this.speed * Math.cos(this.direction);
-            var yDis = this.speed * Math.sin(this.direction);
+            var xDis = (this.speed * Math.cos(this.direction)) * (timeMultiplier / FPS);
+            var yDis = (this.speed * Math.sin(this.direction)) * (timeMultiplier / FPS);
 
             var u, v, t, fleet, ship;
 
@@ -485,8 +487,8 @@ const jFight = function()
 
         this.getCollisionTime = function(spaceship)
         {
-            var dx = this.speed * Math.cos(this.direction);
-            var dy = this.speed * Math.sin(this.direction);
+            var dx = (this.speed * Math.cos(this.direction)) * (timeMultiplier / FPS);
+            var dy = (this.speed * Math.sin(this.direction)) * (timeMultiplier / FPS);
 
             var m1 = dx == 0 ? null : dy / dx;
             var b1 = m1 == null ? null : this.position.y() - m1 * this.position.x();
@@ -503,7 +505,7 @@ const jFight = function()
 
             if(dis >= SPACESHIP_SIZE / 2) return null;
 
-            return (x - this.position.x()) / (this.speed * Math.cos(this.direction));
+            return (x - this.position.x()) / (this.speed * Math.cos(this.direction) * (timeMultiplier / FPS));
         }
     }
 
